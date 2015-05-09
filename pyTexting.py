@@ -54,3 +54,42 @@ def soMuchHappy(textName,timeDelay,numberOfMessages):
     print "Done"
 
 soMuchHappy("Josh",0.1,4)
+
+'''--------Stuff I added below'--------'''
+
+def howMuchHappy():
+    print "Who would you like to send messages to?"
+    happyName = raw_input()
+    print "How much time should be between messages?"
+    happyTime = raw_input()
+    print "How many messages should be sent?"
+    happyQuant = raw_input()
+    soMuchHappy(happyName,happyTime,happyQuant)
+
+def addName():
+    print "What is thier name?"
+    name = raw_input()
+    print "What is thier phone number?"
+    number = raw_input()
+    print "What is their phone carrier?"
+    carrier = raw_input()
+
+    numbers = pickle.load( open( "numbers.p", "rb" ) )
+
+
+def mainMenu():
+    print " Do you want to send a message(send) or add a name to the database(add) or exit the program(exit)?"
+    answer = raw_input()
+    if answer.lower() is "send":
+        howMuchHappy()
+    elif answer.lower() is "add":
+        pass
+    elif answer.lower() is "exit":
+        import sys              #move this up top at some point
+        sys.exit()
+    else:
+        print "Sorry, input is not valid."
+
+def  main():
+    print "Welcome ot Josh's nice message sender using python!"
+    print ""
