@@ -96,7 +96,7 @@ def mainMenu():
     elif answer == "exit":
         sys.exit()
     else:
-        print "Sorry, '%s' is not a valid input. Please use one 'send', 'add', or 'exit'" %answer
+        print "Sorry, '%s' is not a valid input. Please use 'send', 'add', or 'exit'" %answer
 
 def  main():
     print "Welcome to Joshs nice message sender using python!"
