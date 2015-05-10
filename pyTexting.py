@@ -55,15 +55,11 @@ def soMuchHappy(textName,timeDelay,numberOfMessages):
         x=x-1
         if x is not 0:      #don't delay after the last message is sent
             msgTime = float(timeDelay)*60
-            print "Now I'm waiting %s seconds" %(str(msgTime))
+            print "Now %s seconds" %(str(msgTime))
             time.sleep(msgTime)
     time.sleep(60)
     goodbye(textName)
     print "Done"
-
-#soMuchHappy("Josh",1,1)
-
-'''--------Stuff I added below'--------'''
 
 def howMuchHappy():
     '''Takes in nothing, prompts for who in the dictionary to send messages to, how much delay, and how many messages, then calls soMuchHappy() to do it'''
@@ -89,21 +85,20 @@ def addName():
     pickle.dump( numbers, open( "numbers.p", "wb" ) )
 
 def mainMenu():
-    '''prompts user with the three options, this gets looped for the program'''
     print " Do you want to send a message(send) or add a name to the database(add) or exit the program(exit)?"
     answer = raw_input()
     print answer
-    if answer.lower() is "send":
+    if answer == "send":
         howMuchHappy()
-    elif answer.lower() is "add":
+    elif answer == "add":
         addName()
-    elif answer.lower() is "exit":
+    elif answer == "exit":
         sys.exit()
     else:
-        print "Sorry, '%s' is not a valid input." %answer
+        print "Sorry, '%s' is not a valid input. Please use one 'send', 'add', or 'exit'" %answer
 
 def  main():
-    print "Welcome ot Josh's nice message sender using python!"
+    print "Welcome to Joshs nice message sender using python!"
     print ""
     while True:
         mainMenu()
