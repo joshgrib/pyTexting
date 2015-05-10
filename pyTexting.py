@@ -2,6 +2,7 @@ import smtplib     #for sending the messages
 import pickle       #for accessing the saved list/ dictionary files
 import time          #for time delays
 import random    #for random numbers
+import sys          #for quitting the program
 
 '''load all the files'''
 numbers = pickle.load( open( "numbers.p", "rb" ) )
@@ -17,10 +18,7 @@ def sendMsg(textName,textMessage):
     server = smtplib.SMTP( "smtp.gmail.com", 587 )
     server.starttls()
     server.login(emailUsername,emailPassword)
-    print numbers.get(textName)
-    print numbers
     name = '"' + numbers.get(textName) + '"'
-    print name
     server.sendmail( 'Messages', name, textMessage)
     print "Done sending message"
 
@@ -59,45 +57,55 @@ def soMuchHappy(textName,timeDelay,numberOfMessages):
             msgTime = float(timeDelay)*60
             print "Now I'm waiting %s seconds" %(str(msgTime))
             time.sleep(msgTime)
+    time.sleep(60)
     goodbye(textName)
     print "Done"
 
-soMuchHappy("Josh",1,2)
+#soMuchHappy("Josh",1,1)
 
 '''--------Stuff I added below'--------'''
 
 def howMuchHappy():
-    print "Who would you like to send messages to?"
+    '''Takes in nothing, prompts for who in the dictionary to send messages to, how much delay, and how many messages, then calls soMuchHappy() to do it'''
+    print "Who would you like to send messages to? (Don't use quotes)"
+    print numbers.keys()
     happyName = raw_input()
-    print "How much time should be between messages?"
+    print "How many minutes should be between messages?"
     happyTime = raw_input()
     print "How many messages should be sent?"
     happyQuant = raw_input()
     soMuchHappy(happyName,happyTime,happyQuant)
 
 def addName():
+    '''Prompts user for a name and place to send mesages then stores them in the dictionary'''
+    '''TODO: Add an option to just choose a carrier and have the program figure out what the email address would be'''
     print "What is thier name?"
     name = raw_input()
-    print "What is thier phone number?"
+    newName = str(name)
+    print "What email address should messages be sent to? (Ex: 5555555555@vtext.com for verizon)"
     number = raw_input()
-    print "What is their phone carrier?"
-    carrier = raw_input()
-
-    numbers = pickle.load( open( "numbers.p", "rb" ) )
+    newNumber = str(number)
+    numbers[newName] = newNumber
+    pickle.dump( numbers, open( "numbers.p", "wb" ) )
 
 def mainMenu():
+    '''prompts user with the three options, this gets looped for the program'''
     print " Do you want to send a message(send) or add a name to the database(add) or exit the program(exit)?"
     answer = raw_input()
+    print answer
     if answer.lower() is "send":
         howMuchHappy()
     elif answer.lower() is "add":
-        pass
+        addName()
     elif answer.lower() is "exit":
-        import sys              #move this up top at some point
         sys.exit()
     else:
-        print "Sorry, input is not valid."
+        print "Sorry, '%s' is not a valid input." %answer
 
 def  main():
     print "Welcome ot Josh's nice message sender using python!"
     print ""
+    while True:
+        mainMenu()
+
+main()
