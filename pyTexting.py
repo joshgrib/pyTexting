@@ -47,6 +47,7 @@ def soMuchHappy(textName,timeDelay,numberOfMessages):
     soMuchHappy("Josh",5,12) will send a random happy message to the email stored as 'Josh' every 5 minutes for 12 messages (the next hour)
     '''
     welcome(textName)
+    time.sleep(30)
     MSize = len(M) - 1
     x = float(numberOfMessages)
     while x > 0:
@@ -55,7 +56,7 @@ def soMuchHappy(textName,timeDelay,numberOfMessages):
         x=x-1
         if x is not 0:      #don't delay after the last message is sent
             msgTime = float(timeDelay)*60
-            print "Now %s seconds" %(str(msgTime))
+            print "Now waiting %s seconds" %(str(msgTime))
             time.sleep(msgTime)
     time.sleep(60)
     goodbye(textName)
