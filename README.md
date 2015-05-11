@@ -7,14 +7,24 @@ Create a gmail account to send messages from
 Enter login credentials into the beginning of the pyTexting.py file
 
 ###Step 2
-Run niceMessages.py and friendsNumbers.py to create pickle files to save the messages as a list and the friends number as a dictionary
+Run niceMessages.py, friendsNumbers.py, credentials.py, and catfacts.py to create pickle files that the program uses
+
+Make sure the resulting FILENAME.p files are in the same directory as the pyTexting.py program
 
 Note that you need to put numbers in, I can't let everyone message my friends or they wouldn't be my friends anymore
 
 ###Step 3
-Run pyTexting.py and call one of the functions on a name in the numbers dictionary
+Run pyTexting.py
 
-spreadTheHappiness("NAME",timeDelay) will send a welcome text and then send a nice message at the frequency you determine by timeDelay, which is minutes between messages
+Choose to send messages, add a name, or exit
+
+####Sending
+Choose cat facts or nice messages, then enter who to send it to, frequency and quantity of messages
+
+####Adding a name
+You need to add the as the email which the text will be sent to
+
+Alternatively, edit the friendsNumbers.py file and run it again
 
 ##Step 4
 Everyone is super happy
