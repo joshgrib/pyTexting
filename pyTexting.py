@@ -112,17 +112,47 @@ def goodbye(textName):
     sendMsg(textName, "Thats the end! Hope this made you happier!")
     print "Said goodbye to " + textName
 
+def addNumber():
+    '''Prompts user for phone number and carrier, returns the address needed to send to'''
+    print "What is the phone number to send messages to?"
+    num = raw_input()
+
+    print "What is their phone carrier?"
+    print "Options: Alltel, AT&T, Boost, Nextel, Sprint, T-Mobile, US Cellular, Verizon, Virgin Mobile"
+    carrier = raw_input()
+    if carrier == "Alltel":
+        address = str(num) + "@message.alltel.com"
+    elif carrier == "AT&T":
+        address = str(num) + "@txt.att.net"
+    elif carrier == "Boost":
+        address = str(num) + "@myboostmobile.com"
+    elif carrier == "Nextel":
+        address = str(num) + "@messaging.nextel.com"
+    elif carrier == "Sprint":
+        address = str(num) + "@messaging.sprintpcs.com"
+    elif carrier == "T-Mobile":
+        address = str(num) + "@tmomail.net"
+    elif carrier == "US Cellular":
+        address = str(num) + "@email.uscc.net"
+    elif carrier == "Verizon":
+        address = str(num) + "@vtext.com"
+    elif carrier == "Virgin Mobile":
+        address = str(num) + "@vmobl.com"
+    else:
+        print "Sorry '%s' is not a valid input." %carrier
+    return address
+
 def addName():
     '''Prompts user for a name and place to send mesages then stores them in the dictionary'''
     '''TODO: Add an option to just choose a carrier and have the program figure out what the email address would be'''
     print "What is thier name?"
     name = raw_input()
     newName = str(name)
-    print "What email address should messages be sent to? (Ex: 5555555555@vtext.com for verizon)"
-    number = raw_input()
-    newNumber = str(number)
+    address = addNumber()
+    newNumber = str(address)
     numbers[newName] = newNumber
     pickle.dump( numbers, open( "numbers.p", "wb" ) )
+    print "Add '%s' with the address '%s' to the list of available names." %(name,address)
 def mainMenu():
     print " Do you want to send a stuff(send) or add a name to the database(add) or exit the program(exit)?"
     answer = raw_input()
